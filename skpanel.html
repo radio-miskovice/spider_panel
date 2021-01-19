@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./skpanel.css">
+  <title>Spider Keyer Console</title>
+</head>
+<body>
+  <aside>
+    <h3>Spider Keyer Commands</h3>
+    <button id="connect">Connect Spider Keyer</button>
+    <button id="cmdPot">Ignore potentiometer</button>
+    <div id="buzzer">
+    <label class="fullWidth">Buzzer pitch</label>
+    <button class="buzzer" value=450>450 Hz</button>
+    <button class="buzzer" value=500>500 Hz</button>
+    <button class="buzzer" value=600>600 Hz</button>
+    <button class="buzzer" value=700>700 Hz</button>
+    <button class="buzzer" value=800>800 Hz</button>
+    </div>
+    <div id="speedPanel">
+      <label class="keyerInput">Set speed:</label>
+      <button value=12>Sluggish</button>
+      <button value=15>Very slow</button>
+      <button value=19>Slow</button>
+      <button value=22>Happy</button>
+      <button value=25>Fast</button>
+      <button value=29>Very fast</button>
+      <button value=33>Crazy</button>
+      <button value=38>Freak out</button>
+    </div>
+  </aside>
+  <main>
+    <h1>Spider Keyer Console</h1>
+    <h2>Use, explore, learn</h2>
+    <div id="error"></div>
+    <label id="status">(keyer not connected)</label>
+    <label class="keyerInput">Type text and press enter:</label>
+    <input type="text" id="text" />
+    <label class="keyerInput">Double click text to send again:</label>
+    <ul id="history">
+    </ul>
+  </main>
+  <script src="./skpanel.js" defer></script>
+</body>
+</html>

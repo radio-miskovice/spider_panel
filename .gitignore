@@ -1,0 +1,10 @@
+node_modules/
+dist/
+button.js
+glitch.html
+package.json
+t.js
+tsconfig.json
+yarn.lock
+.vscode/launch.json
+src/spider.ts
