@@ -14,8 +14,9 @@
     <button id="connect">Connect Spider Keyer</button>
     <label id="keyerId" class="fullWidth report">(keyer not connected)</label>
     <label id="status" class="fullWidth report">(keyer not connected)</label>
+
     <!-- SPEED CONTROL -->
-    <div id="speedPanel" class="btnPanel">
+    <div id="speedPanel" >
       <h4 class="keyerInput fullWidth">Set speed:</h4>
       <label>
         <input id="wpmControl" type=range min=8 max=50 value=20>
@@ -25,16 +26,17 @@
 
     <!-- SIDETONE CONTROL -->
     <div id="buzzer">
-      <h4 class="fullWidth">Sidetone pitch</h4>
-      <label><input id="sidetone" type=range min=300 max=1000 step=10 value=600>
-        <span id="freq">600</span> Hz
+      <h4>Sidetone pitch</h4>
+      <label>PADDLE <input id="sidetonePaddle" type=range min=300 max=1000 step=10 value=600>
+        <span id="stPaddleFreq">600</span> Hz
       </label>
-      <button value="10">Sidetone AUTO</button>
-      <button value="11">Sidetone PADDLE</button>
+      <label>BUFFER <input id="sidetoneAuto" type=range min=300 max=1000 step=10 value=600>
+        <span id="stAutoFreq">600</span> Hz
+      </label>
     </div>
 
-    <div id="cmdPanel" class="btnPanel">
-      <h4 class="keyerInput fullWidth">Selected commands:</h4>
+    <div id="cmdPanel">
+      <h4>Selected commands:</h4>
       
       <div class="container">
         <label class="switch" for="paddleTriggerSwitch">
@@ -75,11 +77,13 @@
         </label>
         <label>Swap paddles</label>
       </div>
-      <button value=16>GET STATUS</button>
-      <button value=17>GET ID</button>
-      <button value=18>BEEP</button>
-      <button value=15>RESET</button>
-      <button value=14>BREAK</button>
+      <div id="cmdButtons">
+        <button value=16>STATUS</button>
+        <button value=17>GET ID</button>
+        <button value=18>BEEP</button>
+        <button value=15>RESET</button>
+        <button value=14>BREAK</button>
+      </div>
     </div>
 
     <div class="green">

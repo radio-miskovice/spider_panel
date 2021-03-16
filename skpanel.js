@@ -3,13 +3,13 @@ const encoder = new TextEncoder()
 
 const asideArea = document.getElementById("side")
 const errorText = document.getElementById("error")
-const sidetoneLabel = document.getElementById("freq")
 const textbox = document.getElementById("text")
 const connectBtn = document.getElementById("connect")
 const historyList = document.getElementById("history")
-const sidetoneControl = document.getElementById("sidetone")
-const sidetoneAutoBtn = document.getElementById("sidetoneActionAuto")
-const sidetonePaddleBtn = document.getElementById("sidetoneActionPaddle")
+const sidetoneControlPaddle = document.getElementById("sidetonePaddle")
+const sidetoneLabelPaddle = document.getElementById("stPaddleFreq")
+const sidetoneControlAuto = document.getElementById("sidetoneAuto")
+const sidetoneLabelAuto = document.getElementById("stAutoFreq")
 const spiderStatusLabel = document.getElementById("status")
 const spiderIdLabel = document.getElementById("keyerId")
 const sendCustomBtn = document.getElementById("sendCustomCommand")
@@ -58,8 +58,8 @@ function updateStatus( status ) {
   const ptt = (st & 0x10) ? 'ON' : 'OFF'
   const key = (st & 0x08) ? 'ON' : 'OFF'
   const bfr = (st & 0x20) ? 'chars' : 'empty'
-  const pdbreak = ( st & 4 ) ? ' - PADDLE BREAK - ' : ''
-  const txt = `[${statusCount++}] PTT ${ptt} - KEY ${key} - BUFFER ${bfr} - SPEED ${status[1]} WPM${pdbreak}`
+  const pdbreak = ( st & 4 ) ? ' - BREAK - ' : ''
+  const txt = `[${statusCount++}] KEY ${key} - BUFFER ${bfr} - ${status[1]} WPM${pdbreak}`
   if( status[1] > 0 ) {
     wpmControl.value = status[1] ;
     wpmLabel.innerHTML = (status[1]).toString();
@@ -355,23 +355,6 @@ function sendCustomCommand() {
 }
 
 /**
- * 
- * @param {DOMEvent} e 
- */
-function setSpiderSpeed(e) {
-  const cmd  = e.target.value ;
-  if( cmd == "PC" ) { // set wpm speed from PC
-    const wpm = parseInt(wpmControl.value) ;
-    if( wpm > 0 && wpm < 255) {
-      sendSpiderCommand([27, 3, wpm]);
-    }
-  }
-  else if (cmd == "SK") {
-    sendSpiderCommand([27, 3, 255]);
-  }
-}
-
-/**
  *
  * @param {DOMEvent} e
  */
@@ -443,19 +426,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     refreshHistory()
   }
 
-  // activate pitch buttons
-  const pitchButtons = document.querySelectorAll('#buzzer > button')
-  try {
-    for (let b of pitchButtons) {
-      b.onclick = setSpiderPitch
+  sidetoneControlAuto.onchange = (e) => {
+    sidetoneLabelAuto.innerHTML = e.target.value;
+    const hz = parseInt(e.target.value) / 10 ;
+    if( hz ) {
+      sendSpiderCommand([27, 10, hz]);
     }
   }
-  catch (e) {
-    setError('Unable to set pitch button actions')
+
+  sidetoneControlPaddle.onchange = (e) => {
+    sidetoneLabelPaddle.innerHTML = e.target.value;
+    const hz = parseInt(e.target.value) / 10;
+    if (hz) {
+      sendSpiderCommand([27, 11, hz]);
+    }
   }
 
   // activate other command buttons
-  const cmdButtons = document.querySelectorAll('#cmdPanel > button')
+  const cmdButtons = document.querySelectorAll('#cmdButtons > button')
   try {
     for (let b of cmdButtons) {
       b.onclick = sendButtonCommand
@@ -481,9 +469,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   catch(e) {
     console.log("Cannot activate custom command.")
   }
-  connectBtn.onclick = connectPort
-  sidetoneControl.onchange = onSidetoneChange
-  wpmControl.onchange = e => {
+
+  connectBtn.onclick = connectPort;
+
+  wpmControl.onchange = (e) => {
     const wpm = parseInt(wpmControl.value)
     wpmLabel.innerHTML = wpmControl.value
     sendSpiderCommand([27, 3, wpm])
