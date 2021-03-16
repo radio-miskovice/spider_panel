@@ -421,8 +421,8 @@ function showSpeedButtons( yesNo ) {
 }
 
 
-function setStatus() {
-}
+// function setStatus() {
+// }
 
 function onSwitchChange( e ) {
   const cmd = parseInt(e.target.value) ;

@@ -13,6 +13,7 @@
     <h3>Spider Keyer Commands</h3>
     <button id="connect">Connect Spider Keyer</button>
 
+    <!-- SPEED CONTROL -->
     <div id="speedPanel" class="btnPanel">
       <h4 class="keyerInput fullWidth">Set speed:</h4>
       <label><span id="wpmLabel">20</span> WPM
@@ -20,9 +21,12 @@
       </label>
     </div>
 
+    <!-- SIDETONE CONTROL -->
     <div id="buzzer">
       <h4 class="fullWidth">Buzzer pitch</h4>
       <label>Sidetone <span id="freq">600</span> Hz <input id="sidetone" type=range min=100 max=2550 value=600></label>
+      <button value="10">Sidetone AUTO</button>
+      <button value="11">Sidetone PADDLE</button>
     </div>
 
     <div id="cmdPanel" class="btnPanel">
