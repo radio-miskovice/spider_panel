@@ -12,25 +12,38 @@
   <aside id="side">
     <h3>Spider Keyer Commands</h3>
     <button id="connect">Connect Spider Keyer</button>
-
+    <label id="keyerId" class="fullWidth report">(keyer not connected)</label>
+    <label id="status" class="fullWidth report">(keyer not connected)</label>
     <!-- SPEED CONTROL -->
     <div id="speedPanel" class="btnPanel">
       <h4 class="keyerInput fullWidth">Set speed:</h4>
-      <label><span id="wpmLabel">20</span> WPM
+      <label>
         <input id="wpmControl" type=range min=8 max=50 value=20>
+        <span id="wpmLabel">20</span> WPM
       </label>
     </div>
 
     <!-- SIDETONE CONTROL -->
     <div id="buzzer">
-      <h4 class="fullWidth">Buzzer pitch</h4>
-      <label>Sidetone <span id="freq">600</span> Hz <input id="sidetone" type=range min=100 max=2550 value=600></label>
+      <h4 class="fullWidth">Sidetone pitch</h4>
+      <label><input id="sidetone" type=range min=300 max=1000 step=10 value=600>
+        <span id="freq">600</span> Hz
+      </label>
       <button value="10">Sidetone AUTO</button>
       <button value="11">Sidetone PADDLE</button>
     </div>
 
     <div id="cmdPanel" class="btnPanel">
       <h4 class="keyerInput fullWidth">Selected commands:</h4>
+      
+      <div class="container">
+        <label class="switch" for="paddleTriggerSwitch">
+          <input type="checkbox" id="paddleTriggerSwitch" value="9">
+          <div class="slider round"></div>
+        </label>
+        <label>Paddle trigger PTT</label>
+      </div>
+
       <div class="container">
         <label class="switch" for="pttSwitch">
           <input type="checkbox" id="pttSwitch" value="1" >
@@ -38,6 +51,7 @@
         </label>
         <label>PTT</label>
       </div>
+      
       <div class="container">
         <label class="switch" for="keySwitch">
           <input type="checkbox" id="keySwitch" value="2" >
@@ -45,6 +59,7 @@
         </label>
         <label>KEY</label>
       </div>
+      
       <div class="container">
         <label class="switch" for="statusSwitch">
           <input type="checkbox" id="statusSwitch" checked value="19" >
@@ -52,6 +67,7 @@
         </label>
         <label>Auto status</label>
       </div>
+
       <div class="container">
         <label class="switch" for="paddleSwitch">
           <input type="checkbox" id="paddleSwitch" value="23" >
@@ -81,8 +97,7 @@
     <h1>Spider Keyer Console</h1>
     <h2>Use, explore, learn</h2>
     <div id="error"></div>
-    <label id="keyerId">(keyer not connected)</label>
-    <label id="status">(keyer not connected)</label>
+
     <label class="keyerInput">Type text and press enter:</label>
     <input type="text" id="text" />
     <label class="keyerInput">Double click text to send again:</label>

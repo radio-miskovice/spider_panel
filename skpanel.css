@@ -19,6 +19,13 @@ aside.connected div {
   visibility: visible ;
 }
 
+.report {
+  font-size: small ;
+  text-align: center;
+  color: navy ;
+  font-family: Oswald, Arial ;
+}
+
 div.green {
   background: #4c4 ;
   padding: 1ch 0 ;
