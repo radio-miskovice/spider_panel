@@ -9,34 +9,75 @@
   <title>Spider Keyer Console</title>
 </head>
 <body>
-  <aside>
+  <aside id="side">
     <h3>Spider Keyer Commands</h3>
     <button id="connect">Connect Spider Keyer</button>
-    <button id="cmdPot">Ignore potentiometer</button>
+
+    <div id="speedPanel" class="btnPanel">
+      <h4 class="keyerInput fullWidth">Set speed:</h4>
+      <label><span id="wpmLabel">20</span> WPM
+        <input id="wpmControl" type=range min=8 max=50 value=20>
+      </label>
+    </div>
+
     <div id="buzzer">
-    <label class="fullWidth">Buzzer pitch</label>
-    <button class="buzzer" value=450>450 Hz</button>
-    <button class="buzzer" value=500>500 Hz</button>
-    <button class="buzzer" value=600>600 Hz</button>
-    <button class="buzzer" value=700>700 Hz</button>
-    <button class="buzzer" value=800>800 Hz</button>
+      <h4 class="fullWidth">Buzzer pitch</h4>
+      <label>Sidetone <span id="freq">600</span> Hz <input id="sidetone" type=range min=100 max=2550 value=600></label>
     </div>
-    <div id="speedPanel">
-      <label class="keyerInput">Set speed:</label>
-      <button value=12>Sluggish</button>
-      <button value=15>Very slow</button>
-      <button value=19>Slow</button>
-      <button value=22>Happy</button>
-      <button value=25>Fast</button>
-      <button value=29>Very fast</button>
-      <button value=33>Crazy</button>
-      <button value=38>Freak out</button>
+
+    <div id="cmdPanel" class="btnPanel">
+      <h4 class="keyerInput fullWidth">Selected commands:</h4>
+      <div class="container">
+        <label class="switch" for="pttSwitch">
+          <input type="checkbox" id="pttSwitch" value="1" >
+          <div class="slider round"></div>
+        </label>
+        <label>PTT</label>
+      </div>
+      <div class="container">
+        <label class="switch" for="keySwitch">
+          <input type="checkbox" id="keySwitch" value="2" >
+          <div class="slider round"></div>
+        </label>
+        <label>KEY</label>
+      </div>
+      <div class="container">
+        <label class="switch" for="statusSwitch">
+          <input type="checkbox" id="statusSwitch" checked value="19" >
+          <div class="slider round"></div>
+        </label>
+        <label>Auto status</label>
+      </div>
+      <div class="container">
+        <label class="switch" for="paddleSwitch">
+          <input type="checkbox" id="paddleSwitch" value="23" >
+          <div class="slider round"></div>
+        </label>
+        <label>Swap paddles</label>
+      </div>
+      <button value=16>GET STATUS</button>
+      <button value=17>GET ID</button>
+      <button value=18>BEEP</button>
+      <button value=15>RESET</button>
+      <button value=14>BREAK</button>
     </div>
+
+    <div class="green">
+      <h4>Manual Command</h4>
+      <div class="packed">
+        <input id="cmd1" type="number" maxlength="3">
+        <input id="cmd2" type="number" maxlength="3">
+        <label><input id="immy" type="checkbox"> Immediate</label>
+        <button id="sendCustomCommand">Send</button>
+      </div>
+    </div>
+
   </aside>
   <main>
     <h1>Spider Keyer Console</h1>
     <h2>Use, explore, learn</h2>
     <div id="error"></div>
+    <label id="keyerId">(keyer not connected)</label>
     <label id="status">(keyer not connected)</label>
     <label class="keyerInput">Type text and press enter:</label>
     <input type="text" id="text" />
